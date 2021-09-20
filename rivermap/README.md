@@ -22,5 +22,5 @@ This script prases your river init file. However currently, it only works with s
 # mupdf /tmp/rivermap
 ```
 ## Usage
-By default, you can just run `rivermap` to compile and open a pdf with all your mappings.
-`rivermap` can of course be given a keybinding as well in your river init.
+By default, you can just run `rivermap.sh` to compile and open a pdf with all your mappings.
+`rivermap.sh` can of course be given a keybinding in your river init.
