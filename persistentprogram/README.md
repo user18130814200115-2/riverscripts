@@ -14,12 +14,14 @@ Though lariza is hardcoded, the source code is easily modifiable,
 a simple `s/lariza/insert program/g` should do the trick and allow for using the script with any program.
 
 ## Dependencies
-- lswt
-- wlrctl
-- yambar (to be replaced with ristate in the future)
+- [lswt](https://git.sr.ht/~leon_plickat/lswt)
+- [wlrctl](https://git.sr.ht/~brocellous/wlrctl)
+- [yambar](https://codeberg.org/dnkl/yambar) (to be replaced with [ristate](https://github.com/snakedye/ristate) in the future)
 - a posix shell (dash, bash, ksh, etc.)
    + grep
    + cut
+   + tail
+   + sed (GNU)
 
 ## Usage
 With `persistentprogram.sh` in your PATH:
