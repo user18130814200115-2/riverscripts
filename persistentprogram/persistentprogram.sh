@@ -4,11 +4,13 @@
 larizatag="512"
 
 # Get the tag the user is on
-# This currently uses yambar (by outputting yambar's debug to a temporary file) which is not a very graceful solution.
-# I might use ristate in the future
-tag="$(grep "zriver_output_status_v1@3.focused_tags" /tmp/yambar | tail -n 1 | sed -E 's/.*\(([0-9]*)\)/\1/')"
+# To do this, we must spawn ristate and kill it after a short wile,
+# otherwise it will keep running indefinitely 
+# Then we format the tags into a formula to add al the tags together and get them into a workable format
+tag=$(printf "0$(printf "+2^(%s-1)" $(ristate -t | grep -o "[0-9]*" & sleep 0.2 && killall ristate))\n" | bc)
 
-# spawn lariza (on current tag) and assign the view to the $larizatag as well once it spawns
+# spawn lariza (on current tag)
+# assign the view to the $larizatag once it spawns
 init() {
     riverctl spawn lariza &
     wlrctl toplevel waitfor app_id:lariza && wlrctl toplevel focus app_id:lariza &&\
@@ -50,4 +52,3 @@ case $1 in
     quit)quit;;
     # Init is always checked, so we do not need a case for init
 esac
-
