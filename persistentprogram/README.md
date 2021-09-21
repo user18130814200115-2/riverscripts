@@ -16,12 +16,11 @@ a simple `s/lariza/insert program/g` should do the trick and allow for using the
 ## Dependencies
 - [lswt](https://git.sr.ht/~leon_plickat/lswt)
 - [wlrctl](https://git.sr.ht/~brocellous/wlrctl)
-- [yambar](https://codeberg.org/dnkl/yambar) (to be replaced with [ristate](https://github.com/snakedye/ristate) in the future)
+- [ristate](https://github.com/snakedye/ristate)
 - a posix shell (dash, bash, ksh, etc.)
    + grep
    + cut
-   + tail
-   + sed (GNU)
+   + bc
 
 ## Usage
 With `persistentprogram.sh` in your PATH:
