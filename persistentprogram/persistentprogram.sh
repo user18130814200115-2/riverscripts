@@ -4,11 +4,14 @@
 larizatag="512"
 
 # Get the tag the user is on
-# This currently uses yambar (by outputting yambar's debug to a temporary file) which is not a very graceful solution.
-# I might use ristate in the future
-tag="$(grep "zriver_output_status_v1@3.focused_tags" /tmp/yambar | tail -n 1 | sed -E 's/.*\(([0-9]*)\)/\1/')"
+# To do this, we must spawn ristate and kill it after a short wile,
+# otherwise it will keep running indefinitely 
+decimaltag=$(ristate -t | grep -o "[0-9]*" & sleep 0.2 && killall ristate)
+# Then we use the below formula to make the decimal tag number usable by river
+tag=$(echo "2^($decimaltag-1)" | bc)
 
-# spawn lariza (on current tag) and assign the view to the $larizatag as well once it spawns
+# spawn lariza (on current tag)
+# assign the view to the $larizatag once it spawns
 init() {
     riverctl spawn lariza &
     wlrctl toplevel waitfor app_id:lariza && wlrctl toplevel focus app_id:lariza &&\
@@ -50,4 +53,3 @@ case $1 in
     quit)quit;;
     # Init is always checked, so we do not need a case for init
 esac
-
