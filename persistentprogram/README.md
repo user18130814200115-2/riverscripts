@@ -21,6 +21,7 @@ a simple `s/lariza/insert program/g` should do the trick and allow for using the
    + grep
    + cut
    + bc
+   + printf
 
 ## Usage
 With `persistentprogram.sh` in your PATH:
