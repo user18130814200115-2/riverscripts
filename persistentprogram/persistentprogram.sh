@@ -14,7 +14,7 @@ tag=$(printf "0$(printf "+2^(%s-1)" $(ristate -t | grep -o "[0-9]*" & sleep 0.2 
 init() {
     riverctl spawn lariza &
     wlrctl toplevel waitfor app_id:lariza && wlrctl toplevel focus app_id:lariza &&\
-    riverctl set-view-tags $larizatag && exit
+    riverctl set-view-tags $larizatag
 }
 
 spawn() {
