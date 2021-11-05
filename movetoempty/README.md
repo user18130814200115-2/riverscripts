@@ -21,5 +21,5 @@ it will be moved to the `5th` tag.
 - bc
 
 ## Note
-The scrip can also be used as a oneliner:
+The script can also be used as a oneliner:
 `raw=$(ristate -vt & sleep 0.2 && kill $! ); riverctl set-view-tags $(printf "%s" "$raw" | grep -o "[0-9]" | sort -n  | awk '{for(i=p+1; i<$1; i++) print i} {p=$1}' | xargs -i_ printf "2^(_-1)\n" | bc)`
