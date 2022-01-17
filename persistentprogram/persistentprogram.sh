@@ -6,8 +6,10 @@ larizatag="512"
 # Get the tag the user is on
 # To do this, we must spawn ristate and kill it after a short wile,
 # otherwise it will keep running indefinitely 
-# Then we format the tags into a formula to add al the tags together and get them into a workable format
-tag=$(printf "0$(printf "+2^(%s-1)" $(ristate -t | grep -o "[0-9]*" & sleep 0.2 && killall ristate))\n" | bc)
+# Then we format the tags into a formula to add all the tags together and get them into a workable format
+tag=$(ristate -t & pid=$!; sleep 0.2 && kill $pid)
+tag=$(echo "$tag" | grep -o "[0-9]*")
+tag=$(printf "0$(printf "+2^(%s-1)" $tag)\n" | bc)
 
 # spawn lariza (on current tag)
 # assign the view to the $larizatag once it spawns
