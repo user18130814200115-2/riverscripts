@@ -30,3 +30,22 @@ With `persistentprogram.sh` in your PATH:
 3. Map your usual `move` key bind to `spawn persistentprogram.sh move`.
 4. Map your usual `focus` key bind to `spawn persistentprogram.sh focus`.
 5. I like to load the persistent program on startup, by calling `persistentprogram.sh` with no arguments in my river init.
+
+You can use the following example for your config:
+```
+#!/bin/zsh
+for i in $(seq 1 9)
+do
+    tags=$((1 << ($i - 1)))
+
+    # Mod+[1-9] to focus tag [0-8]
+    riverctl map normal $mod $i spawn "focuslariza focus $i"
+
+    # Mod+Shift+[1-9] to tag focused view with tag [0-8]
+    riverctl map normal $mod+Shift $i spawn "focuslariza move $tags"
+done
+
+# Quit the current view
+riverctl map normal $mod+Shift Q spawn "focuslariza quit"
+
+```
