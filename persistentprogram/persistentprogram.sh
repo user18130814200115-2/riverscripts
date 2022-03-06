@@ -18,6 +18,7 @@ tag=$(cat /tmp/focuslariza)
 # assign the view to the $cgulltag once it spawns
 init() {
     #riverctl spawn "cgull" &
+    printf "1\n" > /tmp/focuslariza
     wlrctl toplevel waitfor app_id:cgull && wlrctl toplevel focus app_id:cgull &&\
     riverctl set-view-tags $cgulltag
 }
@@ -54,7 +55,7 @@ quit() {
 }
 
 move() {
-    printf "$1\n" > /tmp/focuslariza
+    #printf "$1\n" > /tmp/focuslariza
     riverctl toggle-view-tags $1
     riverctl toggle-view-tags $tag
 }
