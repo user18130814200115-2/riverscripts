@@ -39,7 +39,7 @@ do
     tags=$((1 << ($i - 1)))
 
     # Mod+[1-9] to focus tag [0-8]
-    riverctl map normal $mod $i spawn "focuslariza focus $i"
+    riverctl map normal $mod $i spawn "focuslariza focus $tags"
 
     # Mod+Shift+[1-9] to tag focused view with tag [0-8]
     riverctl map normal $mod+Shift $i spawn "focuslariza move $tags"
